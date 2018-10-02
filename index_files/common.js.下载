@@ -1,0 +1,52 @@
+function scrolling(a,b,c){
+	var speedp=30;
+	var tabp=document.getElementById(a);
+	var tab1p=document.getElementById(b);
+	var tab2p=document.getElementById(c);
+	function Marqueep(){
+		if(tab2p.offsetWidth-tabp.scrollLeft<=0)
+			tabp.scrollLeft-=tab1p.offsetWidth
+		else{
+			tabp.scrollLeft++;
+		}
+	}
+	var MyMarp=setInterval(Marqueep,speedp);
+	tabp.onmouseover=function(){clearInterval(MyMarp);};
+	tabp.onmouseout=function(){MyMarp=setInterval(Marqueep,speedp);};
+}
+function jgform(tinput,tshow,tcla,tlist,tbtn){
+	var finput=$("."+tinput);
+	var fshow=$("."+tshow);
+	var fcla=$("."+tcla);
+	var flist=$("."+tlist);
+	var fbtn=$("."+tbtn);
+	var input_txt = finput.val();
+	finput.focus(function(){
+		if(input_txt === $(this).val()) $(this).val("");
+	}).blur(function(){
+		if($(this).val() == "") $(this).val(input_txt);
+	});
+	$(".head,.nav,.pfla_in").click(function(){
+		flist.hide();
+	})
+	fshow.click(function(){
+		flist.slideToggle("fast");
+		return false;
+	});
+	flist.find("li").hover(function(){
+		$(this).addClass("li_hover");
+	},function(){
+		$(this).removeClass("li_hover");
+	}).click(function(){
+		var cla_txt=$(this).html();
+		var cla_val=$(this).attr("rel");
+		fcla.val(cla_val);
+		fshow.html(cla_txt);
+	})
+	flist.find("li:last").css("background","none");
+	fbtn.focus(function(){$(this).blur();})
+}
+$(function(){
+	scrolling("n_con","n1p","n2p");
+	jgform("s_txt","s_show","s_cla","s_cla_list","s_btn");
+})

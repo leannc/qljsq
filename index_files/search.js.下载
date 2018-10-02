@@ -1,0 +1,50 @@
+////---------- 搜索表单验证
+//jQuery( function() {
+//	var s_txt = jQuery("#search input:text[name='kws']").val();
+//	jQuery("#search").submit( function() {
+//		var s_s_txt = jQuery(this).find("input:text[name='kws']").val();
+//		var ridarr = jQuery(".selected").attr("id").split("_");
+//		var rid=ridarr.pop();
+//		if ( s_s_txt == "" || s_s_txt == s_txt || s_s_txt == "请输入关键词！" || s_s_txt == "请输入关键词！！" ) {
+//			jQuery(this).find("input:text[name='kws']").val("请输入关键词！！");
+//			return false;
+//		}
+//		if(rid==0)
+//		{
+//			alert("请选择搜索栏目");
+//			return false;
+//		}
+//	} ).find("input:text[name='kws']").focus( function() {
+//		var s_s_txt = jQuery(this).val();
+//		if ( s_s_txt == s_txt || s_s_txt == "请输入关键词！" || s_s_txt == "请输入关键词！！" ) {
+//			jQuery(this).val("");
+//		}
+//	} ).blur( function() {
+//		var s_s_txt = jQuery(this).val();
+//		if ( s_s_txt == "" || s_s_txt == "请输入关键词！" || s_s_txt == "请输入关键词！！" ) {
+//			jQuery(this).val(s_txt);
+//		}
+//	} );
+//} );
+
+//---------- 搜索表单验证
+jQuery( function() {
+	var s_txt = jQuery("#search input:text[name='kws']").val();
+	jQuery("#search").submit( function() {
+		var s_s_txt = jQuery(this).find("input:text[name='kws']").val();
+		if ( s_s_txt == "" || s_s_txt == s_txt || s_s_txt == "请输入关键词！" ) {
+			jQuery(this).find("input:text[name='kws']").val("请输入关键词！");
+			return false;
+		}
+	} ).find("input:text[name='kws']").focus( function() {
+		var s_s_txt = jQuery(this).val();
+		if ( s_s_txt == s_txt || s_s_txt == "请输入关键词！" ) {
+			jQuery(this).val("");
+		}
+	} ).blur( function() {
+		var s_s_txt = jQuery(this).val();
+		if ( s_s_txt == "" || s_s_txt == "请输入关键词！" ) {
+			jQuery(this).val(s_txt);
+		}
+	} );
+} );
